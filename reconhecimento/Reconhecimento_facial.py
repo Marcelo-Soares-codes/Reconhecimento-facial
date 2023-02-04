@@ -9,7 +9,7 @@ port = 'COM7'
 board = pyfirmata.Arduino(port)
 
 
-client = MongoClient('URL')
+client = MongoClient('mongodb+srv://marcelo:marcelo@cluster0.2z05x66.mongodb.net/?retryWrites=true&w=majority')
 db = client['Cluster0']
 collection = db['trfse']
 

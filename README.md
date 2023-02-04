@@ -28,3 +28,10 @@ Esse projeto é uma solução inovadora e de baixo custo, ja que o software e ha
 3. Iniciar o arquivo `main.py`
 4. Fazer a conexão com o arduino e adicionar as portas corretas
 5. Iniciar o arquivo `Reconhecimento.py` dentro da pasta `reconhecimento`
+
+## Pagina inicial
+![Pagina inicial do programa](./assets/inicio.png)
+
+## Pagina cadastro
+![Pagina inicial do programa](./assets/cadastro.png)
+
