@@ -1,0 +1,554 @@
+Screen_Manager:
+    Home_Screen:
+    Register_Screen:
+
+<Home_Screen>:
+    name: "home"
+    MDFloatLayout:
+        id: fundo_home
+        Image:
+            source:"assets/logo.jpeg"
+            size_hint: None, None
+            size: 190, 190
+            pos_hint:{"center_x":.5, "center_y":.82}
+
+        MDLabel:
+            text: "Bem Vindo"
+            font_name: 'Roboto-Bold'
+            color: "#026E89"
+            font_size: 52
+            halign: "center"
+            pos_hint: {"center_y": .61}
+
+        MDLabel:
+            text: "ao T.R.F.S.E"
+            font_name: 'Roboto-Bold'
+            color: "#026E89"
+            font_size: 52
+            halign: "center"
+            pos_hint: {"center_y": .51}
+
+        MDFloatLayout:
+            radius: [15, ]
+            size_hint: .25, .25
+            pos_hint:{"center_x":.2, "center_y":.2}
+            md_bg_color: 86/255, 86/255, 86/255, 40/255
+            MDRaisedButton:
+                size_hint: 1, 1
+                text: "Cadastrar"
+                md_bg_color: 255/255, 255/255, 255/255, 0
+                pos_hint:{"center_x":.5, "center_y":.5}
+                valign: "bottom"
+                theme_text_color: "Custom"
+                text_color: "#026E89"
+                font_name: 'Roboto-Bold'
+                font_size: 32
+                on_release:
+                    app.root.current = "cadastro"
+
+            MDIcon:
+                icon: "account-plus"
+                font_size: 80
+                pos_hint_y: .8
+                pos_hint:{"center_x":.5, "center_y":.63}
+                color: "#026E89"
+
+        MDFloatLayout:
+            radius: [15, ]
+            size_hint: .25, .25
+            pos_hint:{"center_x":.5, "center_y":.2}
+            md_bg_color: 86/255, 86/255, 86/255, 40/255
+            MDRaisedButton:
+                size_hint: 1, 1
+                text: "Consultar"
+                md_bg_color: 255/255, 255/255, 255/255, 0
+                pos_hint:{"center_x":.5, "center_y":.5}
+                valign: "bottom"
+                theme_text_color: "Custom"
+                text_color: "#026E89"
+                font_name: 'Roboto-Bold'
+                font_size: 32
+                on_release:
+                    root.atualizar_lista()
+
+            MDIcon:
+                icon: "database-search"
+                font_size: 80
+                pos_hint_y: .8
+                pos_hint:{"center_x":.5, "center_y":.63}
+                color: "#026E89"
+
+        MDFloatLayout:
+            radius: [15, ]
+            size_hint: .25, .25
+            pos_hint:{"center_x":.8, "center_y":.2}
+            md_bg_color: 86/255, 86/255, 86/255, 40/255
+            MDRaisedButton:
+                size_hint: 1, 1
+                text: "Sair"
+                md_bg_color: 255/255, 255/255, 255/255, 0
+                pos_hint:{"center_x":.5, "center_y":.5}
+                valign: "bottom"
+                theme_text_color: "Custom"
+                text_color: "#026E89"
+                font_name: 'Roboto-Bold'
+                font_size: 32
+                on_release:
+                    app.Sair()
+
+            MDIcon:
+                icon: "exit-run"
+                font_size: 60
+                pos_hint_y: .8
+                pos_hint:{"center_x":.5, "center_y":.63}
+                color: "#026E89"
+
+    MDBoxLayout:
+        id: lista
+        md_bg_color: "white"
+        pos_hint: {"center_y": 10}
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "TRFSE"
+            md_bg_color: "#026E89"
+            elevation: 15
+            left_action_items:
+                [["arrow-left", lambda x: root.sair_lista()]]
+        MDFloatLayout:
+            id: lista_users
+
+    MDFloatLayout:
+        id: user_card
+        md_bg_color: 200/255, 200/255, 200/255
+        pos_hint:{"center_y":10}
+        MDIconButton:
+            icon: "arrow-left"
+            theme_icon_color: "Custom"
+            icon_color: "#026E89"
+            pos_hint:{"center_x":.05, "center_y":.95}
+            on_release:
+                root.sair_card_user()
+
+        MDBoxLayout:
+            md_bg_color: "#026E89"
+            size_hint: None, None
+            pos_hint: {"center_y": .5, "center_x": .5}
+            size: 650, 350
+            padding: 5, 5
+            radius: [50]
+            MDFloatLayout:
+                md_bg_color: "white"
+                pos_hint: {"center_y": .5, "center_x": .5}
+                radius: [45]
+                Image:
+                    source: "assets/no_user.png"
+                    size_hint: None, None
+                    size: 175, 175
+                    pos_hint: {"center_y":.6, "center_x":.2}
+
+                MDLabel:
+                    id: edit_nome
+                    text: "Nome: _______ __ ______ ______"
+                    pos_hint: {"center_y":.85, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDLabel:
+                    id: edit_id
+                    text: "ID: __"
+                    pos_hint: {"center_y":.75, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDLabel:
+                    id: edit_cpf
+                    text: "CPF: ___.___.___-__"
+                    pos_hint: {"center_y":.65, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDLabel:
+                    id: edit_rg
+                    text: "RG: __.___.___-__"
+                    pos_hint: {"center_y":.55, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDLabel:
+                    id: edit_matricula
+                    text: "Matrícula: _____________-_"
+                    pos_hint: {"center_y":.45, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDLabel:
+                    id: edit_telefone
+                    text: "Telefone: (__)_____-____"
+                    pos_hint: {"center_y":.35, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDFillRoundFlatButton:
+                    text: "Editar"
+                    text_color: "white"
+                    md_bg_color: "#026E89"
+                    pos_hint: {"center_y":.15, "center_x":.5}
+                    font_name: 'Roboto-Bold'
+                    font_size: 22
+                    size_hint: .32, .14
+                    on_release:
+                        root.abrir_edit_user()
+
+    MDFloatLayout:
+        id: edit_user
+        md_bg_color: 200/255, 200/255, 200/255
+        pos_hint:{"center_y":10}
+        MDIconButton:
+            icon: "arrow-left"
+            theme_icon_color: "Custom"
+            icon_color: "#026E89"
+            pos_hint:{"center_x":.05, "center_y":.95}
+            on_release:
+                root.voltar_card_user()
+
+        MDBoxLayout:
+            md_bg_color: "#026E89"
+            size_hint: None, None
+            pos_hint: {"center_y": .5, "center_x": .5}
+            size: 650, 350
+            padding: 5, 5
+            radius: [50]
+            MDFloatLayout:
+                md_bg_color: "white"
+                pos_hint: {"center_y": .5, "center_x": .5}
+                radius: [45]
+                Image:
+                    source: "assets/no_user.png"
+                    size_hint: None, None
+                    size: 175, 175
+                    pos_hint: {"center_y":.6, "center_x":.2}
+
+                MDLabel:
+                    text: "Nome:"
+                    pos_hint: {"center_y":.85, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDTextFieldRect:
+                    id: txt_nome
+                    size_hint: .4, None
+                    height: "30dp"
+                    pos_hint: {"center_y":.85, "center_x":.72}
+
+                MDLabel:
+                    id: edit_id1
+                    text: "ID: __"
+                    pos_hint: {"center_y":.75, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDLabel:
+                    text: "CPF:"
+                    pos_hint: {"center_y":.65, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDTextFieldRect:
+                    id: txt_cpf
+                    size_hint: .43, None
+                    height: "30dp"
+                    pos_hint: {"center_y":.65, "center_x":.707}
+
+                MDLabel:
+                    text: "RG:"
+                    pos_hint: {"center_y":.55, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDTextFieldRect:
+                    id: txt_rg
+                    size_hint: .45, None
+                    height: "30dp"
+                    pos_hint: {"center_y":.55, "center_x":.697}
+
+                MDLabel:
+                    text: "Matrícula:"
+                    pos_hint: {"center_y":.45, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDTextFieldRect:
+                    id: txt_matricula
+                    size_hint: .35, None
+                    height: "30dp"
+                    pos_hint: {"center_y":.45, "center_x":.748}
+
+                MDLabel:
+                    text: "Telefone:"
+                    pos_hint: {"center_y":.35, "center_x":.9}
+                    font_name: 'Roboto-Bold'
+                    color: "#026E89"
+                    font_size: 22
+
+                MDTextFieldRect:
+                    id: txt_telefone
+                    size_hint: .36, None
+                    height: "30dp"
+                    pos_hint: {"center_y":.35, "center_x":.744}
+
+                MDFillRoundFlatButton:
+                    text: "Salvar"
+                    text_color: "white"
+                    md_bg_color: "#026E89"
+                    pos_hint: {"center_y":.15, "center_x":.5}
+                    font_name: 'Roboto-Bold'
+                    font_size: 22
+                    size_hint: .32, .14
+                    on_release:
+                        root.salvar_edit_user()
+
+<Register_Screen>:
+    name: "cadastro"
+    MDFloatLayout:
+        md_bg_color: 200/255, 200/255, 200/255
+        MDIconButton:
+            icon: "arrow-left"
+
+            theme_icon_color: "Custom"
+            icon_color: "#026E89"
+            pos_hint:{"center_x":.05, "center_y":.95}
+            on_release:
+                app.root.current = "home"
+
+
+
+        MDFloatLayout:
+            size_hint: .4, .9
+            pos_hint:{"center_x":.5, "center_y":.5}
+            md_bg_color: "white"
+
+            MDLabel:
+                text: "TRFSE\nCadastro"
+                font_name: 'Roboto-Bold'
+                color: "#026E89"
+                font_size: 30
+                halign: "center"
+                pos_hint: {"center_y": .9, "center_x": .5}
+
+            MDTextField:
+                id: nome
+                hint_text: "Nome"
+                hint_text_color_focus: "blue"
+                pos_hint: {'center_y': 0.7, 'center_x': 0.5}
+                size_hint: .82, .12
+                on_hint_text_color_normal: "blue"
+                text_color_focus: "blue"
+                helper_text: "Obrigratório*"
+                helper_text_mode: "persistent"
+
+            MDTextField:
+                id: cpf
+                hint_text: "CPF"
+                hint_text_color_focus: "blue"
+                pos_hint: {'center_y': 0.6, 'center_x': 0.5}
+                size_hint: .82, .12
+                on_hint_text_color_normal: "blue"
+                text_color_focus: "blue"
+
+            MDTextField:
+                id: rg
+                hint_text: "RG"
+                hint_text_color_focus: "blue"
+                pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+                size_hint: .82, .12
+                on_hint_text_color_normal: "blue"
+                text_color_focus: "blue"
+
+            MDTextField:
+                id: matricula
+                hint_text: "Matrícula"
+                hint_text_color_focus: "blue"
+                pos_hint: {'center_y': 0.4, 'center_x': 0.5}
+                size_hint: .82, .12
+                on_hint_text_color_normal: "blue"
+                text_color_focus: "blue"
+                helper_text: "Obrigratório*"
+                helper_text_mode: "persistent"
+
+            MDTextField:
+                id: telefone
+                hint_text: "Telefone"
+                hint_text_color_focus: "blue"
+                pos_hint: {'center_y': 0.3, 'center_x': 0.5}
+                size_hint: .82, .12
+                on_hint_text_color_normal: "blue"
+                text_color_focus: "blue"
+
+            MDFillRoundFlatButton:
+                pos_hint: {'center_y': 0.15, 'center_x': 0.5}
+                size_hint: .6, .09
+                text: "Cadastrar"
+                font_name: 'Roboto-Bold'
+                font_size: 20
+                on_release:
+                    root.frente_screen()
+
+    MDFloatLayout:
+        id: frente
+        md_bg_color: "white"
+        pos_hint: {"center_y": 10}
+        MDLabel:
+            text: "Posicione o rosto\nfrente a câmera!"
+            font_name: 'Roboto-Bold'
+            color: "#026E89"
+            font_size: 64
+            halign: "center"
+            pos_hint: {"center_y": .65}
+
+        MDFillRoundFlatButton:
+            text: "Continuar"
+            pos_hint: {'center_y': 0.18, 'center_x': 0.5}
+            size_hint: .6, .09
+            font_name: 'Roboto-Bold'
+            font_size: 20
+            on_release:
+                root.cima_screen()
+
+        MDIconButton:
+            icon: "arrow-left"
+            theme_icon_color: "Custom"
+            icon_color: "#026E89"
+            pos_hint:{"center_x":.05, "center_y":.95}
+            on_release:
+                root.register_screen()
+
+    MDFloatLayout:
+        id: cima
+        md_bg_color: "white"
+        pos_hint: {"center_y": 10}
+        MDLabel:
+            text: "Incline o rosto\nlevemente a cima"
+            font_name: 'Roboto-Bold'
+            color: "#026E89"
+            font_size: 64
+            halign: "center"
+            pos_hint: {"center_y": .65}
+
+        MDFillRoundFlatButton:
+            text: "Continuar"
+            pos_hint: {'center_y': 0.18, 'center_x': 0.5}
+            size_hint: .6, .09
+            font_name: 'Roboto-Bold'
+            font_size: 20
+            on_release:
+                root.baixo_screen()
+
+        MDIconButton:
+            icon: "arrow-left"
+            theme_icon_color: "Custom"
+            icon_color: "#026E89"
+            pos_hint:{"center_x":.05, "center_y":.95}
+            on_release:
+                root.register_screen()
+
+    MDFloatLayout:
+        id: baixo
+        md_bg_color: "white"
+        pos_hint: {"center_y": 10}
+        MDLabel:
+            text: "Incline o rosto\nlevemente a baixo"
+            font_name: 'Roboto-Bold'
+            color: "#026E89"
+            font_size: 64
+            halign: "center"
+            pos_hint: {"center_y": .65}
+
+        MDFillRoundFlatButton:
+            text: "Continuar"
+            pos_hint: {'center_y': 0.18, 'center_x': 0.5}
+            size_hint: .6, .09
+            font_name: 'Roboto-Bold'
+            font_size: 20
+            on_release:
+                root.esquerda_screen()
+
+        MDIconButton:
+            icon: "arrow-left"
+            theme_icon_color: "Custom"
+            icon_color: "#026E89"
+            pos_hint:{"center_x":.05, "center_y":.95}
+            on_release:
+                root.register_screen()
+
+    MDFloatLayout:
+        id: esquerda
+        md_bg_color: "white"
+        pos_hint: {"center_y": 10}
+        MDLabel:
+            text: "Incline o rosto\nlevemente a esquerda"
+            font_name: 'Roboto-Bold'
+            color: "#026E89"
+            font_size: 64
+            halign: "center"
+            pos_hint: {"center_y": .65}
+
+        MDFillRoundFlatButton:
+            text: "Continuar"
+            pos_hint: {'center_y': 0.18, 'center_x': 0.5}
+            size_hint: .6, .09
+            font_name: 'Roboto-Bold'
+            font_size: 20
+            on_release:
+                root.direita_screen()
+
+        MDIconButton:
+            icon: "arrow-left"
+            theme_icon_color: "Custom"
+            icon_color: "#026E89"
+            pos_hint:{"center_x":.05, "center_y":.95}
+            on_release:
+                root.register_screen()
+
+    MDFloatLayout:
+        id: direita
+        md_bg_color: "white"
+        pos_hint: {"center_y": 10}
+        MDLabel:
+            text: "Incline o rosto\nlevemente a direita"
+            font_name: 'Roboto-Bold'
+            color: "#026E89"
+            font_size: 64
+            halign: "center"
+            pos_hint: {"center_y": .65}
+
+        MDFillRoundFlatButton:
+            text: "Continuar"
+            pos_hint: {'center_y': 0.18, 'center_x': 0.5}
+            size_hint: .6, .09
+            font_name: 'Roboto-Bold'
+            font_size: 20
+            on_release:
+                root.ultimo_screen()
+
+        MDIconButton:
+            icon: "arrow-left"
+            theme_icon_color: "Custom"
+            icon_color: "#026E89"
+            pos_hint:{"center_x":.05, "center_y":.95}
+            on_release:
+                root.register_screen()
+
+
+
+
